@@ -43,10 +43,10 @@ public class Game implements Runnable {
         this.title = title;
         keyManager = new KeyManager();
 
+        window = new Window(width, height, title);
     }
 
-    private void init() {
-        window = new Window(width, height, title);
+    public void init() {
         window.getFrame().addKeyListener(keyManager);
 
         Assets.init();
@@ -65,6 +65,13 @@ public class Game implements Runnable {
 
         if (State.getState() != null)
             State.getState().tick();
+
+        reset();
+    }
+
+    private void reset() {
+        if (!handler.getWorld().getEntityManager().getPlayer().isAlive() && handler.getKeyManager().reset)
+            init();
     }
 
     private void render() {
@@ -159,5 +166,3 @@ public class Game implements Runnable {
         }
     }
 }
-
-

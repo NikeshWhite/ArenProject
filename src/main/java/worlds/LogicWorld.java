@@ -55,9 +55,9 @@ public class LogicWorld extends World {
         entityManager.addEntity(blockE4 = new LogicBlockBlue(handler, 8 * Tile.TILE_WIDTH, 8 * Tile.TILE_HEIGHT));
         entityManager.addEntity(blockE5 = new LogicBlockBlue(handler, 9 * Tile.TILE_WIDTH, 8 * Tile.TILE_HEIGHT));
 
-        entityManager.addEntity(stone1 = new StoneWall(handler,6 * Tile.TILE_WIDTH, 2 * Tile.TILE_HEIGHT));
-        entityManager.addEntity(stone2 = new StoneWall(handler,7 * Tile.TILE_WIDTH, 2 * Tile.TILE_HEIGHT));
-        entityManager.addEntity(stone3 = new StoneWall(handler,8 * Tile.TILE_WIDTH, 2 * Tile.TILE_HEIGHT));
+        entityManager.addEntity(stone1 = new StoneWall(handler, 6 * Tile.TILE_WIDTH, 2 * Tile.TILE_HEIGHT));
+        entityManager.addEntity(stone2 = new StoneWall(handler, 7 * Tile.TILE_WIDTH, 2 * Tile.TILE_HEIGHT));
+        entityManager.addEntity(stone3 = new StoneWall(handler, 8 * Tile.TILE_WIDTH, 2 * Tile.TILE_HEIGHT));
     }
 
     @Override
@@ -91,7 +91,7 @@ public class LogicWorld extends World {
 
     private void logicComplete() {
 
-        if(blockA1.isActive() && blockA2.isActive() && blockA3.isActive() && blockA4.isActive() && blockA5.isActive() && blockB2.isActive() && blockB4.isActive() &&
+        if (blockA1.isActive() && blockA2.isActive() && blockA3.isActive() && blockA4.isActive() && blockA5.isActive() && blockB2.isActive() && blockB4.isActive() &&
                 blockC2.isActive() && blockC4.isActive() && blockD2.isActive() && blockD4.isActive() && blockE1.isActive() && blockE2.isActive() && blockE4.isActive() &&
                 !blockB1.isActive() && !blockB3.isActive() && !blockB5.isActive() && !blockC1.isActive() && !blockC3.isActive() && !blockC5.isActive() &&
                 !blockD1.isActive() && !blockD3.isActive() && !blockD5.isActive() && !blockE3.isActive() && !blockE5.isActive()) {
@@ -129,7 +129,7 @@ public class LogicWorld extends World {
     }
 
     private void isPas() {
-        if(blockA1.isActive() && !blockA2.isActive() && blockA3.isActive() && blockA4.isActive() && blockA5.isActive() && !blockB2.isActive() && !blockB4.isActive() &&
+        if (blockA1.isActive() && !blockA2.isActive() && blockA3.isActive() && blockA4.isActive() && blockA5.isActive() && !blockB2.isActive() && !blockB4.isActive() &&
                 blockC2.isActive() && blockC4.isActive() && !blockD2.isActive() && !blockD4.isActive() && blockE1.isActive() && blockE2.isActive() && !blockE4.isActive() &&
                 blockB1.isActive() && blockB3.isActive() && !blockB5.isActive() && blockC1.isActive() && blockC3.isActive() && blockC5.isActive() &&
                 !blockD1.isActive() && blockD3.isActive() && blockD5.isActive() && blockE3.isActive() && blockE5.isActive()) {
@@ -141,7 +141,7 @@ public class LogicWorld extends World {
 
         player = handler.getWorld().getEntityManager().getPlayer();
 
-        if(player.getY() > 0 && player.getY() < 10) {
+        if (player.getY() > 0 && player.getY() < 10) {
 
             handler.setWorld(handler.getStartWorldStage2());
             handler.getWorld().getEntityManager().getPlayer().logicIsDone = true;

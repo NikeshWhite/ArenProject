@@ -2,7 +2,6 @@ package states;
 
 import entities.creatures.Player;
 import game.Handler;
-import worlds.*;
 
 import java.awt.*;
 
@@ -14,13 +13,11 @@ public class GameState extends State {
         super(handler);
 
         handler.setWorld(handler.getStartWorld());
-
     }
 
     @Override
     public void tick() {
         handler.getWorld().tick();
-
     }
 
     @Override

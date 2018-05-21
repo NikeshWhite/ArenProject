@@ -18,7 +18,7 @@ public class LabyrinthWorld extends World {
 
         if (Math.random() < 0.3) {
             loadWorld("/textworlds/lab.txt");
-        } else if (Math.random() < 0.6 && Math.random() >= 0.3){
+        } else if (Math.random() < 0.6 && Math.random() >= 0.3) {
             loadWorld("/textworlds/lab0.txt");
         } else {
             loadWorld("/textworlds/lab1.txt");
@@ -26,7 +26,7 @@ public class LabyrinthWorld extends World {
 
         entityManager.getPlayer().setX(spawnX);
         entityManager.getPlayer().setY(spawnY);
-        }
+    }
 
     @Override
     public void tick() {
@@ -56,7 +56,7 @@ public class LabyrinthWorld extends World {
     private void toLogic() {
         player = handler.getWorld().getEntityManager().getPlayer();
 
-        if(player.getY() > 0 && player.getY() < 64) {
+        if (player.getY() > 0 && player.getY() < 64) {
 
             handler.setWorld(handler.getLogicWorld());
         }

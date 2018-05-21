@@ -14,7 +14,6 @@ public class BlueHome extends StaticEntity {
         bounds.y = 0;
         bounds.height = 128;
         bounds.width = 128;
-
     }
 
     @Override

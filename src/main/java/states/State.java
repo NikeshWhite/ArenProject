@@ -19,7 +19,7 @@ public abstract class State {
     //Class
     protected Handler handler;
 
-    public State (Handler handler) {
+    public State(Handler handler) {
         this.handler = handler;
     }
 

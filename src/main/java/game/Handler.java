@@ -52,8 +52,8 @@ public class Handler {
     }
 
     public void setWorld(World world) {
-        if(world != startWorld)
-        world.getEntityManager().getPlayer().setHealth(this.world.getEntityManager().getPlayer().getHealth());
+        if (world != startWorld)
+            world.getEntityManager().getPlayer().setHealth(this.world.getEntityManager().getPlayer().getHealth());
         this.world = world;
     }
 

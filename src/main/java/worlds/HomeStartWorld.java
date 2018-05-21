@@ -4,6 +4,7 @@ import entities.creatures.Player;
 import entities.staticEntities.BlueKey;
 import game.Handler;
 import tiles.Tile;
+
 import java.awt.*;
 
 public class HomeStartWorld extends World {
@@ -49,7 +50,7 @@ public class HomeStartWorld extends World {
     private void toStart() {
         player = handler.getWorld().getEntityManager().getPlayer();
 
-        if(player.getY() > 700) {
+        if (player.getY() > 700) {
 
             handler.setWorld(handler.getStartWorld());
             handler.getStartWorld().getEntityManager().getPlayer().setX(550);

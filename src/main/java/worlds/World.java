@@ -42,7 +42,7 @@ public abstract class World {
         entityManager.render(g);
     }
 
-    public void worldRendering (Graphics g) {
+    public void worldRendering(Graphics g) {
 
         int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
         int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth()) / Tile.TILE_WIDTH + 1);

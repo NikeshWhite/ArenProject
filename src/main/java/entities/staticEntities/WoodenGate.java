@@ -24,7 +24,7 @@ public class WoodenGate extends StaticEntity {
     @Override
     public void render(Graphics g) {
 
-        if(handler.getWorld().getEntityManager().getPlayer().logicIsDone) {
+        if (handler.getWorld().getEntityManager().getPlayer().logicIsDone) {
             g.drawImage(Assets.woodenGateOpen, (int) (x - handler.getGameCamera().getxOffset()),
                     (int) (y - handler.getGameCamera().getyOffset()), 128, 64, null);
         } else {

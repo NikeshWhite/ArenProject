@@ -2,6 +2,7 @@ package entities.creatures;
 
 import game.Handler;
 import gfx.Assets;
+
 import java.awt.*;
 
 public class ArenaEnemySt2 extends Creature {
@@ -19,7 +20,6 @@ public class ArenaEnemySt2 extends Creature {
         bounds.width = 34;
         bounds.height = 44;
     }
-
 
     @Override
     public void tick() {

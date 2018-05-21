@@ -5,8 +5,6 @@ import game.Handler;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
 
 public class EntityManager {
 
@@ -27,27 +25,27 @@ public class EntityManager {
 
     public void tick() {
 
-        for(int i = 0;i < entities.size();i++){
+        for (int i = 0; i < entities.size(); i++) {
             Entity e = entities.get(i);
             e.tick();
-            if(!e.isAlive())
+            if (!e.isAlive())
                 entities.remove(e);
         }
     }
 
-    public void render (Graphics g) {
+    public void render(Graphics g) {
 
-        for (Entity e: entities) {
+        for (Entity e : entities) {
             e.render(g);
         }
         player.render(g);
     }
 
-    public void addEntity (Entity e) {
+    public void addEntity(Entity e) {
         entities.add(e);
     }
 
-    public void removeEntity (Entity e) {
+    public void removeEntity(Entity e) {
         entities.remove(e);
     }
 

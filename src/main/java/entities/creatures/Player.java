@@ -49,7 +49,6 @@ public class Player extends Creature {
         move();
         handler.getGameCamera().centerOnEntity(this);
         isAttackPlayer();
-
     }
 
     public void getInput() {
@@ -88,10 +87,12 @@ public class Player extends Creature {
             currentSpeed = this.speed;
     }
 
-    /** In developing **/
+    /**
+     * In developing
+     **/
     private void isAttackPlayer() {
 
-        if(attackTimer < 350) {
+        if (attackTimer < 350) {
             currentSpeed = 0;
         } else
             speed = PLAYER_SPEED;
@@ -99,12 +100,12 @@ public class Player extends Creature {
         attackTimer += System.currentTimeMillis() - lastAttackTimer;
         lastAttackTimer = System.currentTimeMillis();
 
-        if(attackTimer < attackCooldown)
+        if (attackTimer < attackCooldown)
             return;
 
         attackRectanglePlayer = new Rectangle();
 
-        if(attackPlayer && playerView == 0) {
+        if (attackPlayer && playerView == 0) {
             attackRectanglePlayer.width = 64;
             attackRectanglePlayer.height = 56;
             attackRectanglePlayer.x = (int) x;
@@ -185,18 +186,14 @@ public class Player extends Creature {
         g.fillRect(10, 42, health * 20, 33);
         g.drawImage(Assets.healthBar, 10, 10, 300, 65, null);
 
-        if(attackTimer < 900) {
+        if (attackTimer < 900) {
             g.setColor(Color.ORANGE);
-            g.fillRect(11, 75, (900 - (int)attackTimer) / 3, 10);
+            g.fillRect(11, 75, (900 - (int) attackTimer) / 3, 10);
         }
-
-
 
         if (keyOnPlayer) {
             g.drawImage(Assets.blueKey, 10, 85, 64, 64, null);
         }
-
-
 
         //For Develop collisions
         /*g.setColor(Color.ORANGE);
@@ -213,14 +210,17 @@ public class Player extends Creature {
         g.fillRect((int) (attackRectanglePlayer.x - handler.getGameCamera().getxOffset()),
                 (int) (attackRectanglePlayer.y + bounds.y - handler.getGameCamera().getyOffset()),
                 attackRectanglePlayer.width, attackRectanglePlayer.height);*/
-
-
         /*
         g.setColor(Color.BLUE);
         g.fillRect((int) (x + boundsLogic.x - handler.getGameCamera().getxOffset()),
                 (int) (y + boundsLogic.y - handler.getGameCamera().getyOffset()),
                 boundsLogic.width, boundsLogic.height);*/
+        if (!isAlive()) {
+            g.setColor(new Color(0, 0, 0, 200));
+            g.fillRect(0, 0, 800, 600);
 
+            g.drawImage(Assets.died, 200, 225, 400, 150, null);
+        }
 
     }
 
@@ -240,12 +240,15 @@ public class Player extends Creature {
     public int getBoundLogicX() {
         return boundsLogic.x;
     }
+
     public int getBoundLogicY() {
         return boundsLogic.y;
     }
+
     public int getBoundLogicWidth() {
         return boundsLogic.width;
     }
+
     public int getBoundLogicHeight() {
         return boundsLogic.height;
     }

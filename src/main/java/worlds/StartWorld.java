@@ -38,8 +38,8 @@ public class StartWorld extends World {
         entityManager.addEntity(gate = new BlueGate(handler, 11 * 64, 6 * 64));
         entityManager.addEntity(woodenGate = new WoodenGate(handler, 5 * 64, 6 * 64));
 
-        /*entityManager.addEntity(arenaBoss = new ArenaBoss(handler, 6 * 64, 10 * 64));
-        entityManager.addEntity(arenaEnemy = new ArenaEnemySt2(handler, 3 * 64, 10 * 64));*/
+        //entityManager.addEntity(arenaBoss = new ArenaBoss(handler, 6 * 64, 10 * 64));
+        //entityManager.addEntity(arenaEnemy = new ArenaEnemySt2(handler, 3 * 64, 10 * 64));
     }
 
     @Override
@@ -102,6 +102,3 @@ public class StartWorld extends World {
         }
     }
 }
-
-
-

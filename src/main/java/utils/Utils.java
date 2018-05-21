@@ -1,7 +1,6 @@
 package utils;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -23,7 +22,7 @@ public class Utils {
                 builder.append(line + System.lineSeparator());
 
             br.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

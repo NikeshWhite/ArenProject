@@ -8,7 +8,7 @@ public class Assets {
     private static final int width = 32, height = 32;
 
     public static BufferedImage dirt, grass, stone, darkGrass, stoneBrick, gravel, logicBlockBlueActive, logicBlockBlueNotActive, black, woodPlanks, blueKey;
-    public static BufferedImage player, player1, player2, home, gate, woodenGate, woodenGateOpen;
+    public static BufferedImage player, player1, home, gate, woodenGate, woodenGateOpen;
 
     public static BufferedImage playerUp, playerDown, playerLeft, playerRight,
             playerAttackUp, playerAttackRight, playerAttackDown, playerAttackLeft;
@@ -24,7 +24,7 @@ public class Assets {
 
     public static BufferedImage healthBar;
 
-    public static Image opening, lab, logic, startSt2, end;
+    public static Image opening, lab, logic, startSt2, end, died;
 
 
     public static void init() {
@@ -39,6 +39,7 @@ public class Assets {
         logic = ImageLoader.loadImage("/textures/logic.png");
         startSt2 = ImageLoader.loadImage("/textures/afterLogic.png");
         end = ImageLoader.loadImage("/textures/end.png");
+        died = ImageLoader.loadImage("/textures/died.png");
 
         healthBar = ImageLoader.loadImage("/textures/healthbar.png");
 

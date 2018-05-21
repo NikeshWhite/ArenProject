@@ -79,6 +79,5 @@ public class ArenaBoss extends Creature {
 
     @Override
     public void die() {
-
     }
 }

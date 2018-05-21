@@ -24,8 +24,8 @@ public class ArenaWorldStage2 extends World {
         entityManager.getPlayer().setX(spawnX + 32);
         entityManager.getPlayer().setY(spawnY + 32);
 
-        entityManager.addEntity(stone1 = new StoneWall(handler,9 * Tile.TILE_WIDTH, 3 * Tile.TILE_HEIGHT));
-        entityManager.addEntity(stone2 = new StoneWall(handler,10 * Tile.TILE_WIDTH, 3 * Tile.TILE_HEIGHT));
+        entityManager.addEntity(stone1 = new StoneWall(handler, 9 * Tile.TILE_WIDTH, 3 * Tile.TILE_HEIGHT));
+        entityManager.addEntity(stone2 = new StoneWall(handler, 10 * Tile.TILE_WIDTH, 3 * Tile.TILE_HEIGHT));
 
         entityManager.addEntity(arenaEnemySt2 = new ArenaEnemySt2(handler, 9 * Tile.TILE_WIDTH, 5 * Tile.TILE_HEIGHT));
     }
@@ -48,7 +48,7 @@ public class ArenaWorldStage2 extends World {
 
     private void arenaIsDone() {
 
-        if(!arenaEnemySt2.isAlive()) {
+        if (!arenaEnemySt2.isAlive()) {
             entityManager.removeEntity(stone1);
             entityManager.removeEntity(stone2);
         }
@@ -58,7 +58,7 @@ public class ArenaWorldStage2 extends World {
 
         player = handler.getWorld().getEntityManager().getPlayer();
 
-        if(player.getY() < 10) {
+        if (player.getY() < 10) {
 
             handler.setWorld(handler.getArenaWorldStage3());
         }

@@ -10,7 +10,7 @@ public class KeyManager implements KeyListener {
     private boolean[] enter;
     private boolean[] justPressed;
     private boolean[] cantPress;
-    public boolean up, down, left, right, shift, action, respect, ok, attack;
+    public boolean up, down, left, right, shift, action, respect, ok, attack, reset;
 
     public KeyManager() {
         keys = new boolean[256];
@@ -24,13 +24,13 @@ public class KeyManager implements KeyListener {
     public void tick() {
 
         for (int i = 0; i < keys.length; i++) {
-            if(cantPress[i] && !keys[i]){
+            if (cantPress[i] && !keys[i]) {
                 cantPress[i] = false;
             } else if (justPressed[i]) {
                 cantPress[i] = true;
                 justPressed[i] = false;
             }
-            if(!cantPress[i] && keys[i]){
+            if (!cantPress[i] && keys[i]) {
                 justPressed[i] = true;
             }
         }
@@ -47,6 +47,8 @@ public class KeyManager implements KeyListener {
         attack = justPressed[KeyEvent.VK_SPACE];
 
         ok = justPressed[KeyEvent.VK_ENTER];
+
+        reset = justPressed[KeyEvent.VK_ESCAPE];
     }
 
     @Override

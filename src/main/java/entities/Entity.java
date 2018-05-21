@@ -12,14 +12,12 @@ public abstract class Entity {
     protected int health;
     protected Rectangle bounds;
 
-    protected int deltaHealth;
-
     protected boolean alive = true;
 
     public static final int DEFAULT_HEALTH = 10;
     public static final int ENDLESS_HEALTH = -1124;
 
-    public Entity (Handler handler, double x, double y, int width, int height) {
+    public Entity(Handler handler, double x, double y, int width, int height) {
         this.handler = handler;
         this.x = x;
         this.y = y;
@@ -37,7 +35,7 @@ public abstract class Entity {
 
     public abstract void die();
 
-    public void hurt (int attack) {
+    public void hurt(int attack) {
         health -= attack;
 
         if (health <= 0) {
@@ -48,10 +46,10 @@ public abstract class Entity {
 
     public boolean checkEntityCollisions(double xOffset, double yOffset) {
         for (Entity e : handler.getWorld().getEntityManager().getEntities()) {
-            if(e.equals(this))
+            if (e.equals(this))
                 continue;
 
-            if(e.getCollisionBounds(0, 0).intersects(getCollisionBounds(xOffset, yOffset)))
+            if (e.getCollisionBounds(0, 0).intersects(getCollisionBounds(xOffset, yOffset)))
                 return true;
         }
         return false;

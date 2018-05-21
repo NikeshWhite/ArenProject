@@ -63,7 +63,7 @@ public class LogicBlockBlue extends StaticEntity {
                 player.getX() - player.getBoundLogicX() > x - 64 &&
                 player.getY() + player.getBoundLogicY() < y + 64 &&
                 player.getY() - player.getBoundLogicY() > y - 64) {
-                currentLogic = !currentLogic;
+            currentLogic = !currentLogic;
         }
     }
 }

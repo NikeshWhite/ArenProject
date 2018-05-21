@@ -11,7 +11,7 @@ public abstract class Creature extends Entity {
     public static final int DEFAULT_HEALTH = 10;
     public static final double DEFAULT_SPEED = 5.0;
     public static final int DEFAULT_CREATURE_WIDTH = 64,
-                            DEFAULT_CREATURE_HEIGHT = 64;
+            DEFAULT_CREATURE_HEIGHT = 64;
 
     protected double speed;
     protected double xMove;
@@ -30,7 +30,7 @@ public abstract class Creature extends Entity {
     protected int numAttack;
 
     public Creature(Handler handler, double x, double y, int width, int height) {
-        super(handler, x , y, width, height);
+        super(handler, x, y, width, height);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;
@@ -39,31 +39,31 @@ public abstract class Creature extends Entity {
 
     public void move() {
 
-        if(!checkEntityCollisions(xMove, 0))
+        if (!checkEntityCollisions(xMove, 0))
             moveX();
-        if(!checkEntityCollisions(0, yMove))
+        if (!checkEntityCollisions(0, yMove))
             moveY();
     }
 
     public void moveX() {
 
-        if(xMove > 0){//rght
+        if (xMove > 0) {//rght
 
-            int tx = (int) (x + xMove + bounds.x + bounds.width) /Tile.TILE_WIDTH;
+            int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH;
 
-            if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT) &&
-                    !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
+            if (!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT) &&
+                    !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)) {
                 x += xMove;
             } else {
-               x = tx * Tile.TILE_WIDTH - bounds.width - bounds.x - 1;
+                x = tx * Tile.TILE_WIDTH - bounds.width - bounds.x - 1;
             }
 
-        }else if (xMove < 0){//lft
+        } else if (xMove < 0) {//lft
 
-            int tx = (int) (x + xMove + bounds.x) /Tile.TILE_WIDTH;
+            int tx = (int) (x + xMove + bounds.x) / Tile.TILE_WIDTH;
 
-            if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT) &&
-                    !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){
+            if (!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT) &&
+                    !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)) {
                 x += xMove;
             } else {
                 x = tx * Tile.TILE_WIDTH + bounds.width + bounds.x;
@@ -74,23 +74,23 @@ public abstract class Creature extends Entity {
 
     public void moveY() {
 
-        if(yMove > 0){//dwn
+        if (yMove > 0) {//dwn
 
-            int ty = (int) (y + yMove + bounds.y + bounds.height) /Tile.TILE_HEIGHT;
+            int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
 
-            if(!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
-                    !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)){
+            if (!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
+                    !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
                 y += yMove;
             } else {
                 y = ty * Tile.TILE_HEIGHT - bounds.height - bounds.y - 1;
             }
 
-        }else if (yMove < 0){//up
+        } else if (yMove < 0) {//up
 
-            int ty = (int) (y + yMove + bounds.y) /Tile.TILE_HEIGHT;
+            int ty = (int) (y + yMove + bounds.y) / Tile.TILE_HEIGHT;
 
-            if(!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
-                    !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)){
+            if (!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
+                    !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
                 y += yMove;
             } else {
                 y = ty * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
@@ -102,7 +102,7 @@ public abstract class Creature extends Entity {
     protected void isAttack(long attackCooldown, int stopCooldown, int widthUpDown, int heightUpDown,
                             int widthLeftRight, int heightLeftRight, int attack) {
 
-        if(attackTimer < stopCooldown)
+        if (attackTimer < stopCooldown)
             currentSpeed = 0;
         else
             currentSpeed = speed;
@@ -110,14 +110,14 @@ public abstract class Creature extends Entity {
         attackTimer += System.currentTimeMillis() - lastAttackTimer;
         lastAttackTimer = System.currentTimeMillis();
 
-        if(attackTimer < attackCooldown)
+        if (attackTimer < attackCooldown)
             return;
 
         attackRectangle = new Rectangle();
 
         Player player = handler.getWorld().getEntityManager().getPlayer();
         //Up Attack
-        if(player.getX() + player.getBoundX() + player.getBoundWidth() > x &&
+        if (player.getX() + player.getBoundX() + player.getBoundWidth() > x &&
                 player.getX() + player.getBoundX() < x + width &&
                 player.getY() + player.getHeight() > y - (heightUpDown - bounds.y) &&
                 player.getY() + player.getBoundY() < y + bounds.y) {
@@ -126,7 +126,7 @@ public abstract class Creature extends Entity {
             attackRectangle.x = (int) x;
             attackRectangle.y = (int) y - heightUpDown;
             numAttack = 0;
-        //Right Attack
+            //Right Attack
         } else if (player.getX() > x + bounds.x &&
                 player.getX() + player.getBoundX() < x + bounds.x + bounds.width + widthLeftRight &&
                 player.getY() + player.getHeight() > y + bounds.y &&
@@ -136,7 +136,7 @@ public abstract class Creature extends Entity {
             attackRectangle.x = (int) this.x + this.bounds.x + bounds.width;
             attackRectangle.y = (int) y;
             numAttack = 1;
-        //Down Attack
+            //Down Attack
         } else if (player.getX() + player.getBoundX() + player.getBoundWidth() > x &&
                 player.getX() + player.getBoundX() < x + width &&
                 player.getY() > y + bounds.y &&
@@ -146,7 +146,7 @@ public abstract class Creature extends Entity {
             attackRectangle.x = (int) x;
             attackRectangle.y = (int) y + bounds.height;
             numAttack = 2;
-        //Left Attack
+            //Left Attack
         } else if (player.getX() + player.getBoundX() + player.getBoundWidth() > x + bounds.x - widthLeftRight &&
                 player.getX() + player.getBoundX() + player.getBoundWidth() < x + bounds.x + bounds.width &&
                 player.getY() + player.getHeight() > y + bounds.y &&
@@ -170,7 +170,6 @@ public abstract class Creature extends Entity {
                 return;
             }
         }
-
     }
 
     protected void moveTo() {
@@ -247,6 +246,4 @@ public abstract class Creature extends Entity {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
-
-
 }
