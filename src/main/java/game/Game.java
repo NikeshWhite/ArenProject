@@ -1,14 +1,14 @@
 package game;
 
-        import gfx.Assets;
-        import gfx.GameCamera;
-        import input.KeyManager;
-        import states.GameState;
-        import states.State;
-        import window.Window;
+import gfx.Assets;
+import gfx.GameCamera;
+import input.KeyManager;
+import states.GameState;
+import states.State;
+import window.Window;
 
-        import java.awt.*;
-        import java.awt.image.BufferStrategy;
+import java.awt.*;
+import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable {
 
@@ -37,12 +37,12 @@ public class Game implements Runnable {
     //Handler
     private Handler handler;
 
-
     public Game(int width, int height, String title) {
         this.width = width;
         this.height = height;
         this.title = title;
         keyManager = new KeyManager();
+
     }
 
     private void init() {
@@ -93,8 +93,8 @@ public class Game implements Runnable {
         init();
 
         int fps = 60;
-        double timePerTick = 1000000000 / fps;
-        double delta = 0;
+        float timePerTick = 1000000000 / fps;
+        float delta = 0;
         long now;
         long lastTime = System.nanoTime();
         long timer = 0;

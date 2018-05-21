@@ -1,6 +1,7 @@
 package worlds;
 
 import entities.creatures.Creature;
+import entities.creatures.Player;
 import game.Handler;
 import gfx.Assets;
 
@@ -9,6 +10,8 @@ import java.awt.*;
 public class LabyrinthWorld extends World {
 
     private boolean dialogStart;
+
+    private Player player;
 
     public LabyrinthWorld(Handler handler) {
         super(handler);
@@ -23,11 +26,12 @@ public class LabyrinthWorld extends World {
 
         entityManager.getPlayer().setX(spawnX);
         entityManager.getPlayer().setY(spawnY);
-    }
+        }
 
     @Override
     public void tick() {
         entityManager.tick();
+        toLogic();
 
     }
 
@@ -38,11 +42,23 @@ public class LabyrinthWorld extends World {
         entityManager.render(g);
 
         if (!dialogStart && !handler.getKeyManager().ok) {
-            g.drawImage(Assets.lab, 0, 0, 800, 600, null);
+            Color color1 = new Color(0, 0, 0, 200);
+            g.setColor(color1);
+            g.fillRect(0, 0, 800, 600);
+            g.drawImage(Assets.lab, 100, 350, 600, 200, null);
             getEntityManager().getPlayer().setSpeed(0);
         } else {
             getEntityManager().getPlayer().setSpeed(Creature.DEFAULT_SPEED);
             dialogStart = true;
+        }
+    }
+
+    private void toLogic() {
+        player = handler.getWorld().getEntityManager().getPlayer();
+
+        if(player.getY() > 0 && player.getY() < 64) {
+
+            handler.setWorld(handler.getLogicWorld());
         }
     }
 }

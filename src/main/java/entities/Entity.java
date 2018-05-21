@@ -12,6 +12,8 @@ public abstract class Entity {
     protected int health;
     protected Rectangle bounds;
 
+    protected int deltaHealth;
+
     protected boolean alive = true;
 
     public static final int DEFAULT_HEALTH = 10;
@@ -37,6 +39,7 @@ public abstract class Entity {
 
     public void hurt (int attack) {
         health -= attack;
+
         if (health <= 0) {
             alive = false;
             die();
@@ -125,4 +128,5 @@ public abstract class Entity {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
 }

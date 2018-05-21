@@ -26,5 +26,6 @@ public class BlueHome extends StaticEntity {
     public void render(Graphics g) {
         g.drawImage(Assets.home, (int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), 128, 128, null);
+
     }
 }

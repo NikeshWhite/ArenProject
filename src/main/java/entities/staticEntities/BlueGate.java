@@ -8,7 +8,7 @@ import java.awt.*;
 public class BlueGate extends StaticEntity {
 
     public BlueGate(Handler handler, double x, double y) {
-        super(handler, x, y, 128, 128);
+        super(handler, x, y, 128, 64);
 
         bounds.x = 0;
         bounds.y = 0;

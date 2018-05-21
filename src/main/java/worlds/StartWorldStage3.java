@@ -10,7 +10,7 @@ import gfx.Assets;
 
 import java.awt.*;
 
-public class StartWorldStage2 extends World {
+public class StartWorldStage3 extends World {
 
     private BlueHome home;
     private BlueGate gate;
@@ -21,7 +21,7 @@ public class StartWorldStage2 extends World {
     private boolean keyOnPlayer;
     private boolean dialogStart;
 
-    public StartWorldStage2(Handler handler) {
+    public StartWorldStage3(Handler handler) {
         super(handler);
 
         loadWorld("/textworlds/start.txt");
@@ -40,7 +40,7 @@ public class StartWorldStage2 extends World {
     @Override
     public void tick() {
         entityManager.tick();
-        toArena();
+
     }
 
     @Override
@@ -53,7 +53,7 @@ public class StartWorldStage2 extends World {
             Color color1 = new Color(0, 0, 0, 200);
             g.setColor(color1);
             g.fillRect(0, 0, 800, 600);
-            g.drawImage(Assets.startSt2, 100, 350, 600, 200, null);
+            g.drawImage(Assets.end, 100, 350, 600, 200, null);
             getEntityManager().getPlayer().setSpeed(0);
         } else {
             getEntityManager().getPlayer().setSpeed(Creature.DEFAULT_SPEED);
@@ -63,20 +63,8 @@ public class StartWorldStage2 extends World {
 
     }
 
-
     public WoodenGate getWoodenGate() {
         return woodenGate;
     }
 
-    private void toArena() {
-        player = handler.getWorld().getEntityManager().getPlayer();
-
-        if (player.logicIsDone && player.getY() < getWoodenGate().getY() + getWoodenGate().getHeight() &&
-                player.getY() > getWoodenGate().getY() &&
-                player.getX() < getWoodenGate().getX() + getWoodenGate().getBoundWidth() &&
-                player.getX() > getWoodenGate().getX()) {
-
-            handler.setWorld(handler.getArenaWorld());
-        }
-    }
 }

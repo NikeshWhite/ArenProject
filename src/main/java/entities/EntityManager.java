@@ -5,6 +5,8 @@ import game.Handler;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
 
 public class EntityManager {
 
@@ -20,16 +22,17 @@ public class EntityManager {
 
         entities = new ArrayList<>();
 
+        addEntity(player);
     }
 
     public void tick() {
 
-        for (Entity e: entities) {
+        for(int i = 0;i < entities.size();i++){
+            Entity e = entities.get(i);
             e.tick();
             if(!e.isAlive())
                 entities.remove(e);
         }
-        player.tick();
     }
 
     public void render (Graphics g) {

@@ -1,21 +1,28 @@
 package worlds;
 
-import entities.creatures.Creature;
+import entities.creatures.ArenaBoss;
+import entities.creatures.ArenaEnemySt2;
 import entities.creatures.Player;
 import entities.staticEntities.BlueGate;
 import entities.staticEntities.BlueHome;
+import entities.staticEntities.WoodenGate;
 import game.Handler;
 import gfx.Assets;
-import gfx.ImageLoader;
 
 import java.awt.*;
 
 public class StartWorld extends World {
 
-    private BlueHome home;
+    public BlueHome home;
     private BlueGate gate;
+    private WoodenGate woodenGate;
 
-    private boolean keyOnPlayer;
+    private ArenaBoss arenaBoss;
+
+    private ArenaEnemySt2 arenaEnemy;
+
+    private Player player;
+
     private boolean dialogStart;
     private boolean dialogStartAfterLogic;
 
@@ -24,21 +31,22 @@ public class StartWorld extends World {
 
         loadWorld("/textworlds/start.txt");
 
-        entityManager.getPlayer().setX(spawnX);
-        entityManager.getPlayer().setY(spawnY);
+        entityManager.getPlayer().setX(spawnX + 32);
+        entityManager.getPlayer().setY(spawnY - 32);
 
-        keyOnPlayer = false;
+        entityManager.addEntity(home = new BlueHome(handler, 8 * 64, 5 * 64));
+        entityManager.addEntity(gate = new BlueGate(handler, 11 * 64, 6 * 64));
+        entityManager.addEntity(woodenGate = new WoodenGate(handler, 5 * 64, 6 * 64));
 
-        entityManager.addEntity(home = new BlueHome(handler, 6 * 64, 192));
-        entityManager.addEntity(gate = new BlueGate(handler, 10 * 64, 256));
-
+        /*entityManager.addEntity(arenaBoss = new ArenaBoss(handler, 6 * 64, 10 * 64));
+        entityManager.addEntity(arenaEnemy = new ArenaEnemySt2(handler, 3 * 64, 10 * 64));*/
     }
 
     @Override
     public void tick() {
         entityManager.tick();
-        keyOnPlayer();
-
+        toHome();
+        toLabyrinth();
     }
 
     @Override
@@ -48,43 +56,52 @@ public class StartWorld extends World {
         entityManager.render(g);
 
         if (!dialogStart && !handler.getKeyManager().ok && !getEntityManager().getPlayer().startGameDialogShowed) {
-            g.drawImage(Assets.opening, 0, 0, 800, 600, null);
+            Color color1 = new Color(0, 0, 0, 200);
+            g.setColor(color1);
+            g.fillRect(0, 0, 800, 600);
+            g.drawImage(Assets.opening, 100, 350, 600, 200, null);
             getEntityManager().getPlayer().setSpeed(0);
         } else {
-            getEntityManager().getPlayer().setSpeed(Creature.DEFAULT_SPEED);
             dialogStart = true;
             getEntityManager().getPlayer().startGameDialogShowed = true;
-        }
-
-    }
-
-    private void keyOnPlayer() {
-
-        Player player = handler.getWorld().getEntityManager().getPlayer();
-
-        if (player.getY() + player.getBoundLogicY() < home.getY() + home.getHeight() &&
-                player.getY() - player.getBoundLogicY() > home.getY() &&
-                player.getX() + player.getBoundLogicX() + 1 < home.getX() + home.getBoundWidth() &&
-                player.getX() - player.getBoundLogicX() - 1 > home.getX()) {
-            keyOnPlayer = true;
         }
     }
 
     public boolean isPlayerOnPosition() {
 
-        Player player = handler.getWorld().getEntityManager().getPlayer();
+        player = handler.getWorld().getEntityManager().getPlayer();
 
-        if (player.getY() + player.getBoundLogicY(
-        ) < gate.getY() + gate.getHeight() &&
+        if (player.getY() < gate.getY() + gate.getHeight() &&
                 player.getY() > gate.getY() &&
-                player.getX() + player.getBoundX() < gate.getX() + gate.getBoundWidth() &&
-                player.getX() - player.getBoundX() > gate.getX()) {
+                player.getX() < gate.getX() + gate.getBoundWidth() &&
+                player.getX() > gate.getX()) {
             return true;
         }
         return false;
     }
 
-    public boolean isKeyOnPlayer() {
-        return keyOnPlayer;
+    private void toHome() {
+
+        player = handler.getWorld().getEntityManager().getPlayer();
+
+        if (player.getY() < home.getY() + home.getBoundHeight() &&
+                player.getY() > home.getY() &&
+                player.getX() < home.getX() + home.getBoundWidth() &&
+                player.getX() > home.getX()) {
+
+            handler.setWorld(handler.getHomeStartWorld());
+        }
+    }
+
+    private void toLabyrinth() {
+
+        player = handler.getWorld().getEntityManager().getPlayer();
+
+        if (player.keyOnPlayer && isPlayerOnPosition()) {
+            handler.setWorld(handler.getLabyrinthWorld());
+        }
     }
 }
+
+
+

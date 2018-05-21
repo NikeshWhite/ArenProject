@@ -18,9 +18,14 @@ public abstract class World {
 
     protected EntityManager entityManager;
 
+    private Player player;
+
     public World(Handler handler) {
         this.handler = handler;
-        entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+
+        player = new Player(handler, 100, 100);
+
+        entityManager = new EntityManager(handler, player);
 
         entityManager.getPlayer().setX(spawnX);
         entityManager.getPlayer().setY(spawnY);
@@ -96,4 +101,7 @@ public abstract class World {
         return entityManager;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
 }
