@@ -59,7 +59,7 @@ public class StartWorld extends World {
             Color color1 = new Color(0, 0, 0, 200);
             g.setColor(color1);
             g.fillRect(0, 0, 800, 600);
-            g.drawImage(Assets.opening, 100, 350, 600, 200, null);
+            g.drawImage(Assets.opening, 100, 350, 600, 250, null);
             getEntityManager().getPlayer().setSpeed(0);
         } else {
             dialogStart = true;
